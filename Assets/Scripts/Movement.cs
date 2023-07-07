@@ -47,7 +47,7 @@ public class Movement : MonoBehaviour
         }
         if(!onWall)
         {
-            Physics.gravity = new Vector3(0, -9.81F, 0);
+            Physics.gravity = new Vector3(0, -15.81F, 0);
         }
 
         inAir = !grounded && !onWall;
@@ -83,12 +83,12 @@ public class Movement : MonoBehaviour
         {
             Vector3 currentVelocity = rb.velocity;
             Vector3 targetVelocity = new Vector3(0, 0, move.y);
-            targetVelocity *= speed;
+            targetVelocity *= speed * 2;
             targetVelocity = target.TransformDirection(targetVelocity);
             Vector3 velocityChange = (targetVelocity - currentVelocity);
             velocityChange = new Vector3(velocityChange.x, 0, velocityChange.z);
-            Vector3.ClampMagnitude(velocityChange, maxForce);
-            rb.AddForce(velocityChange, ForceMode.VelocityChange);
+            Vector3.ClampMagnitude(velocityChange, maxForce * 2);
+            rb.AddForce(velocityChange, ForceMode.Force);
         }
 
     }
@@ -110,6 +110,21 @@ public class Movement : MonoBehaviour
         }
         if (onWall)
         {
+
+            if (Physics.CheckSphere(wallCheckL.position, groundDistance, wall)) // checkLeft
+            {
+
+                Vector3 right = new Vector3(2,1,0);
+                right = target.transform.TransformDirection(right);
+                rb.AddForce(right * jumpForce, ForceMode.Impulse);
+            }
+            else if (Physics.CheckSphere(wallCheckR.position, groundDistance, wall)) //checkRight
+            {
+                Vector3 left = new Vector3(-2, 1, 0);
+                left = target.transform.TransformDirection(left);
+
+                rb.AddForce(left * jumpForce, ForceMode.Impulse);
+            }
             /*rb.AddForce*/
         }
     }
