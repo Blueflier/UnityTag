@@ -5,15 +5,17 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     private Rigidbody rb;
     public GameObject camHolder;
     private Transform target;
     private Vector2 move, look;
-    private bool grounded = true;
+    private bool grounded, onWall, inAir;
     private float lookRotation;
-    [SerializeField] private float speed, sens, maxForce;
+/*    [SerializeField] GameObject groundedCube;*/
+    [SerializeField] private LayerMask ground, wall;
+    [SerializeField] private float speed, sens, maxForce, jumpForce, groundDistance;
+    public Transform groundCheck, wallCheckL, wallCheckR;
+
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
@@ -37,18 +39,57 @@ public class Movement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //Find target velocity
-        Vector3 currentVelocity = rb.velocity;
-        Vector3 targetVelocity = new Vector3(move.x, 0, move.y);
-        targetVelocity *= speed;
-        //Align direction
-        targetVelocity = target.TransformDirection(targetVelocity);
-        //Calculate forces
-        Vector3 velocityChange = (targetVelocity - currentVelocity);
-        velocityChange = new Vector3 (velocityChange.x, 0, velocityChange.z);
-        //Limit force
-        Vector3.ClampMagnitude(velocityChange, maxForce);
-        rb.AddForce(velocityChange, ForceMode.VelocityChange);
+        grounded = Physics.CheckSphere(groundCheck.position, groundDistance, ground);
+        onWall = (Physics.CheckSphere(wallCheckL.position, groundDistance, wall) || Physics.CheckSphere(wallCheckR.position, groundDistance, wall)) && !grounded;
+        if (onWall)
+        {
+            Physics.gravity = new Vector3(0, -3.0F, 0);
+        }
+        if(!onWall)
+        {
+            Physics.gravity = new Vector3(0, -9.81F, 0);
+        }
+
+        inAir = !grounded && !onWall;
+
+        //MOVEMENT WASD
+        if (grounded)
+        {
+            Vector3 currentVelocity = rb.velocity;
+            Vector3 targetVelocity = new Vector3(move.x, 0, move.y);
+            targetVelocity *= speed;
+            targetVelocity = target.TransformDirection(targetVelocity);
+            Vector3 velocityChange = (targetVelocity - currentVelocity);
+            velocityChange = new Vector3 (velocityChange.x, 0, velocityChange.z);
+            Vector3.ClampMagnitude(velocityChange, maxForce);
+            rb.AddForce(velocityChange, ForceMode.VelocityChange);
+        }
+        
+        if (inAir)
+        {
+            Vector3 currentVelocity = rb.velocity;
+            Vector3 targetVelocity = new Vector3(move.x, 0, move.y);
+            targetVelocity *= speed;
+            targetVelocity = target.TransformDirection(targetVelocity);
+            Vector3 velocityChange = (targetVelocity - currentVelocity);
+            velocityChange = new Vector3(velocityChange.x, 0, velocityChange.z);
+            Vector3.ClampMagnitude(velocityChange, maxForce * 2);
+            rb.AddForce(velocityChange, ForceMode.Force);
+        }
+
+
+        //when on wall you can jump but you jump away from the wall and up
+        if(onWall)
+        {
+            Vector3 currentVelocity = rb.velocity;
+            Vector3 targetVelocity = new Vector3(0, 0, move.y);
+            targetVelocity *= speed;
+            targetVelocity = target.TransformDirection(targetVelocity);
+            Vector3 velocityChange = (targetVelocity - currentVelocity);
+            velocityChange = new Vector3(velocityChange.x, 0, velocityChange.z);
+            Vector3.ClampMagnitude(velocityChange, maxForce);
+            rb.AddForce(velocityChange, ForceMode.VelocityChange);
+        }
 
     }
 
@@ -58,13 +99,18 @@ public class Movement : MonoBehaviour
         target.Rotate(Vector3.up * look.x * sens);
         //Look
         lookRotation += (-look.y * sens);
+        lookRotation = Mathf.Clamp(lookRotation, -90, 90);
         camHolder.transform.eulerAngles = new Vector3(lookRotation, camHolder.transform.eulerAngles.y, camHolder.transform.eulerAngles.z);
     }
         private void Jump()
     {
         if (grounded)
         {
-            rb.AddForce(Vector3.up, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+        if (onWall)
+        {
+            /*rb.AddForce*/
         }
     }
 
