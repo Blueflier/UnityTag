@@ -43,6 +43,7 @@ public class Movement : MonoBehaviour
         onWall = (Physics.CheckSphere(wallCheckL.position, groundDistance, wall) || Physics.CheckSphere(wallCheckR.position, groundDistance, wall)) && !grounded;
         if (onWall)
         {
+            Debug.Log("On Wall");
             Physics.gravity = new Vector3(0, -3.0F, 0);
         }
         if(!onWall)
