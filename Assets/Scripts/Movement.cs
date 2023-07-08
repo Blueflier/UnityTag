@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     private Vector2 move, look;
     private bool grounded, onWall, inAir;
     private float lookRotation;
+    public PauseMenu PauseMenu;
 /*    [SerializeField] GameObject groundedCube;*/
     [SerializeField] private LayerMask ground, wall;
     [SerializeField] private float speed, sens, maxForce, jumpForce, groundDistance;
@@ -97,12 +98,16 @@ public class Movement : MonoBehaviour
     void LateUpdate()
     {
         //Turn
-        target.Rotate(Vector3.up * look.x * sens);
+       
         //Look
-        lookRotation += (-look.y * sens);
-        lookRotation = Mathf.Clamp(lookRotation, -90, 90);
-        camHolder.transform.eulerAngles = new Vector3(lookRotation, camHolder.transform.eulerAngles.y, camHolder.transform.eulerAngles.z);
+        if (!PauseMenu.isGamePaused) {
+            target.Rotate(Vector3.up * look.x * sens);
+            lookRotation += (-look.y * sens);
+            lookRotation = Mathf.Clamp(lookRotation, -90, 90);
+            camHolder.transform.eulerAngles = new Vector3(lookRotation, camHolder.transform.eulerAngles.y, camHolder.transform.eulerAngles.z);
+        }
     }
+        
         private void Jump()
     {
         if (grounded)
