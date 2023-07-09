@@ -431,7 +431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &204644331
 Transform:
   m_ObjectHideFlags: 0
@@ -1340,7 +1340,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &965732694
 Transform:
   m_ObjectHideFlags: 0
@@ -2102,7 +2102,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 77.3, y: 20}
+  m_AnchoredPosition: {x: 77.3, y: 0}
   m_SizeDelta: {x: 130.45, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1152514476
@@ -3032,6 +3032,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4199337781974387837, guid: d98f8da69b6d45242959b9c3789f6d79, type: 3}
+      propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199337781974387837, guid: d98f8da69b6d45242959b9c3789f6d79, type: 3}
+      propertyPath: m_CullingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199337781974387837, guid: d98f8da69b6d45242959b9c3789f6d79, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4508842875482255929, guid: d98f8da69b6d45242959b9c3789f6d79, type: 3}
       propertyPath: m_Name
       value: Muskrat_LOD1
