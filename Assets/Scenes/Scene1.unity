@@ -2645,6 +2645,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BreadRoll
       objectReference: {fileID: 0}
+    - target: {fileID: 7052112293024208663, guid: 6378c0ef129f91c40bcdcdb650ad8b7e, type: 3}
+      propertyPath: m_Name
+      value: Outside
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
