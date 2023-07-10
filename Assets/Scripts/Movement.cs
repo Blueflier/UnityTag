@@ -160,6 +160,8 @@ public class Movement : MonoBehaviour
         
     private void Jump()
     {
+        //Debug.Log("Jump");
+
         if (grounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -167,6 +169,7 @@ public class Movement : MonoBehaviour
 
         if (wallrunning)
         {
+            //Debug.Log("wallrunning");
 
             if (wallL) // checkLeft
             {
@@ -192,7 +195,12 @@ public class Movement : MonoBehaviour
 
     private void checkForWall()
     {
+        bool prevR = wallR;
         wallR = Physics.Raycast(transform.position, target.right, out rightHit, wallCheckDistance, wall);
+        if (prevR != wallR)
+        {
+            //Debug.Log("wallR bool changed");
+        }
         wallL = Physics.Raycast(transform.position, -target.right, out leftHit, wallCheckDistance, wall);
     }
 
@@ -207,6 +215,8 @@ public class Movement : MonoBehaviour
         {
             if(!wallrunning)
             {
+                //Debug.Log("start Wall Run");
+
                 startWallRun();
             }
         }
@@ -224,6 +234,8 @@ public class Movement : MonoBehaviour
 
     private void wallRunMovement()
     {
+        //Debug.Log("wallRunMovement");
+
         rb.useGravity= false;
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
