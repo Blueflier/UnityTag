@@ -1,9 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ItemPickup : Interactable 
 {
+    Transform player;
+    
+    public void click(InputAction.CallbackContext ctx)
+    {
+        PickUp();
+    }
+
+    public Item item;
     public override void Interact() 
     { 
         base.Interact();
@@ -13,7 +21,10 @@ public class ItemPickup : Interactable
 
     public void PickUp()
     {
-        Debug.Log("Picking Up Item");
-        Destroy(gameObject);
+        float distance = Vector3.Distance(player.position, interactionTransform.position);
+        if(distance <= radius){
+            Debug.Log("Picking Up " + item.name);
+            Destroy(gameObject);
+        }
     }
 }

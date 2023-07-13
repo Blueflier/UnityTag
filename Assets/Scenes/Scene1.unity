@@ -1305,6 +1305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 953261815}
   - component: {fileID: 953261814}
+  - component: {fileID: 953261816}
   m_Layer: 0
   m_Name: SelectionManager
   m_TagString: Untagged
@@ -1340,6 +1341,68 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &953261816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953261813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 7f37f5bc4cd4a9a478ae673dbecdd6b8, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8475fb5c-3f88-4fd0-8f9d-232a1f888fec
+    m_ActionName: PlayerMovement/MOVE[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c0d4dbcc-2053-49c3-a626-b5148eeb65d3
+    m_ActionName: PlayerMovement/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8ef86ee0-30b4-4d96-aafc-72e47d5d72d1
+    m_ActionName: PlayerMovement/Crouch
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 28be2342-ac79-4593-9506-0bf01e6722aa
+    m_ActionName: PlayerMovement/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 726a86de-8443-4da0-b7ed-6beeb4d08000
+    m_ActionName: PlayerMovement/Click[/Mouse/leftButton]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PlayerMovement
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &965732693
 GameObject:
   m_ObjectHideFlags: 0
@@ -2611,7 +2674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1095006359657046531, guid: 6378c0ef129f91c40bcdcdb650ad8b7e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3.23
       objectReference: {fileID: 0}
     - target: {fileID: 1095006359657046531, guid: 6378c0ef129f91c40bcdcdb650ad8b7e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2649,10 +2712,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Outside
       objectReference: {fileID: 0}
+    - target: {fileID: 7052112293024208663, guid: 6378c0ef129f91c40bcdcdb650ad8b7e, type: 3}
+      propertyPath: m_TagString
+      value: Item
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6994762269003867205, guid: 6378c0ef129f91c40bcdcdb650ad8b7e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1719462824}
+    - targetCorrespondingSourceObject: {fileID: 6994762269003867205, guid: 6378c0ef129f91c40bcdcdb650ad8b7e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1719462825}
   m_SourcePrefab: {fileID: 100100000, guid: 6378c0ef129f91c40bcdcdb650ad8b7e, type: 3}
 --- !u!1 &1578210596
 GameObject:
@@ -2836,6 +2909,93 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660117331}
   m_CullTransparentMesh: 1
+--- !u!1 &1719462820 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6994762269003867205, guid: 6378c0ef129f91c40bcdcdb650ad8b7e, type: 3}
+  m_PrefabInstance: {fileID: 1538320831}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1719462823 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1095006359657046531, guid: 6378c0ef129f91c40bcdcdb650ad8b7e, type: 3}
+  m_PrefabInstance: {fileID: 1538320831}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1719462824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719462820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad830e1246e50fc4a8ed744d0ae5f041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  interactionTransform: {fileID: 1719462823}
+  item: {fileID: 11400000, guid: a0966839cd220d1488d1f2036c49813d, type: 2}
+--- !u!114 &1719462825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719462820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 7f37f5bc4cd4a9a478ae673dbecdd6b8, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8475fb5c-3f88-4fd0-8f9d-232a1f888fec
+    m_ActionName: PlayerMovement/MOVE[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c0d4dbcc-2053-49c3-a626-b5148eeb65d3
+    m_ActionName: PlayerMovement/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8ef86ee0-30b4-4d96-aafc-72e47d5d72d1
+    m_ActionName: PlayerMovement/Crouch
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 28be2342-ac79-4593-9506-0bf01e6722aa
+    m_ActionName: PlayerMovement/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1719462824}
+        m_TargetAssemblyTypeName: ItemPickup, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 726a86de-8443-4da0-b7ed-6beeb4d08000
+    m_ActionName: PlayerMovement/Click[/Mouse/leftButton]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PlayerMovement
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1734428345
 GameObject:
   m_ObjectHideFlags: 0
@@ -3335,6 +3495,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 28be2342-ac79-4593-9506-0bf01e6722aa
     m_ActionName: PlayerMovement/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 726a86de-8443-4da0-b7ed-6beeb4d08000
+    m_ActionName: PlayerMovement/Click[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerMovement
